@@ -10,19 +10,65 @@
             <h1>Students Grades</h1>
 
             <form action="/compute-grades" method="POST">
-            <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
-            <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
-            <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+            <input type="hidden" name="student_1" value="{{ $student_1 }}">
+            <input type="hidden" name="student_2" value="{{ $student_2 }}">
+            <input type="hidden" name="student_3" value="{{ $student_3 }}">
+            <input type="hidden" name="student_4" value="{{ $student_4 }}">
+            <input type="hidden" name="student_5" value="{{ $student_5 }}">
             @csrf 
             <div class="row">
-                <label>Student: <strong> {{ $student_1 }}</strong></label>
+                <label>Student: <strong>{{ $student_1 }}</strong></label>
                 <div class="col col-md-4">
                     <label>Midterm grade</label>
-                    <input type="number" name="s1_grade1" class="form-control">
+                    <input type="number" name="s1_grade1" class="form-control" max="100" required>
                 </div>
                 <div class="col col-md-4">
                     <label>Finals grade</label>
-                    <input type="number" name="s1_grade1" class="form-control">
+                    <input type="number" name="s1_grade2" class="form-control"  max="100" required>
+                </div>
+            </div>
+            <div class="row">
+                <label>Student: <strong>{{ $student_2 }}</strong></label>
+                <div class="col col-md-4">
+                    <label>Midterm grade</label>
+                    <input type="number" name="s2_grade1" class="form-control" min= "1" max="100" required>
+                </div>
+                <div class="col col-md-4">
+                    <label>Finals grade</label>
+                    <input type="number" name="s2_grade2" class="form-control" min= "1"max="100" required>
+                </div>
+            </div>
+            <div class="row">
+                <label>Student: <strong>{{ $student_3 }}</strong></label>
+                <div class="col col-md-4">
+                    <label>Midterm grade</label>
+                    <input type="number" name="s3_grade1" class="form-control" min= "1" max="100" required>
+                </div>
+                <div class="col col-md-4">
+                    <label>Finals grade</label>
+                    <input type="number" name="s3_grade2" class="form-control" min= "1" max="100" required>
+                </div>
+            </div>
+            <div class="row">
+                <label>Student: <strong>{{ $student_4 }}</strong></label>
+                <div class="col col-md-4">
+                    <label>Midterm grade</label>
+                    <input type="number" name="s4_grade1" class="form-control" min= "1" max="100" required>
+                </div>
+                <div class="col col-md-4">
+                    <label>Finals grade</label>
+                    <input type="number" name="s4_grade2" class="form-control" min= "1" max="100" required>
+                </div>
+            </div>
+            <div class="row">
+                <label>Student: <strong>{{ $student_5 }}</strong></label>
+                <div class="col col-md-4">
+                    <label>Midterm grade</label>
+                    <input type="number" name="s5_grade1" class="form-control" min= "1" max="100" required>
+                </div>
+                <div class="col col-md-4">
+                    <label>Finals grade</label>
+                    <input type="number" name="s5_grade2" class="form-control" min= "1" max="100" required>
                 </div>
             </div>
             <hr>
@@ -35,6 +81,6 @@
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</body>
+    </body>
 </html>
     

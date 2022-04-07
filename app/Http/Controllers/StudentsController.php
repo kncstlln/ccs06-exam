@@ -16,10 +16,10 @@ class StudentsController extends Controller
         $student_1 = $request->name_1;
         $student_2 = $request->name_2;
         $student_3 = $request->name_3;
-        $student_4 = $request->name_3;
-        $student_5 = $request->name_3;
+        $student_4 = $request->name_4;
+        $student_5 = $request->name_5;
 
-        return view('grades', [
+        return view('grade', [
             'student_1' => $student_1,
             'student_2' => $student_2,
             'student_3' => $student_3,
@@ -30,10 +30,20 @@ class StudentsController extends Controller
 
     protected function computeAverageGrade($grade1, $grade2)
     {
-        $average = ($score1 + $score2) /2;
+        $average = ($grade1 + $grade2) /2;
         return round($average, 2);
     }
-
+    protected function createRemarks($average){
+        $remark;
+        if($average>=75){
+            $remark = "PASSED";
+            return $remark;
+        }
+        else{
+            $remark = "FAILED";
+            return $remark;
+        }
+    }
     public function computeGrades(Request $request)
     {
         $student_1 = $request->student_1;
@@ -48,32 +58,43 @@ class StudentsController extends Controller
         $s4_average = $this->computeAverageGrade($request->s4_grade1, $request->s4_grade2);
         $s5_average = $this->computeAverageGrade($request->s5_grade1, $request->s5_grade2);
 
-        return view('grades', [
+        $s1_remark = $this->createRemarks($s1_average);
+        $s2_remark = $this->createRemarks($s2_average);
+        $s3_remark = $this->createRemarks($s3_average);
+        $s4_remark = $this->createRemarks($s4_average);
+        $s5_remark = $this->createRemarks($s5_average);
+        
+        return view('average', [
             'student_1' => $student_1,
             'student_2' => $student_2,
             'student_3' => $student_3,
             'student_4' => $student_4,
             'student_5' => $student_5,
             // student 1 grades
-            'p1_grade1' => $request->s1_grade1,
-            'p1_grade2' => $request->s1_grade2,
-            'p1_average' => $p1_average,
+            's1_grade1' => $request->s1_grade1,
+            's1_grade2' => $request->s1_grade2,
+            's1_average' => $s1_average,
+            's1_remark' => $s1_remark,
             // student 2 grades
-            'p2_grade1' => $request->s2_grade1,
-            'p2_grade2' => $request->s2_grade2,
-            'p2_average' => $p2_average,
+            's2_grade1' => $request->s2_grade1,
+            's2_grade2' => $request->s2_grade2,
+            's2_average' => $s2_average,
+            's2_remark' => $s2_remark,
             // student 3 grades
             's3_grade1' => $request->s3_grade1,
             's3_grade2' => $request->s3_grade2,
             's3_average' => $s3_average,
+            's3_remark' => $s3_remark,
              // student 4 grades
-             's4_grade1' => $request->s4_grade1,
-             's4_grade2' => $request->s4_grade2,
-             's4_average' => $s4_average,
-              // student 5 grades
+            's4_grade1' => $request->s4_grade1,
+            's4_grade2' => $request->s4_grade2,
+            's4_average' => $s4_average,
+            's4_remark' => $s4_remark,
+             // student 5 grades
             's5_grade1' => $request->s5_grade1,
             's5_grade2' => $request->s5_grade2,
             's5_average' => $s5_average,
+            's5_remark' => $s5_remark,
         ]);
     }
 }
